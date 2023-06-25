@@ -3,12 +3,12 @@
 import { ComponentProps } from "react";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import {
-  ButtonVarients,
   buttonStyle,
   buttonPadding,
   buttonBorderRadius,
   buttonBackground,
   buttonHoverBackGround,
+  buttonWidth,
 } from "./style.css";
 
 type Props = {
@@ -17,13 +17,13 @@ type Props = {
   bgColor?: string;
   hoverBgColor?: string;
   disabledBgColor?: string;
-} & ButtonVarients &
-  ComponentProps<"button">;
+  width?: string;
+} & ComponentProps<"button">;
 
 function Button({
   children,
   type,
-  width,
+  width = "auto",
   borderRadius = "8px",
   padding = "8px",
   bgColor = "transparent",
@@ -32,7 +32,7 @@ function Button({
 }: Props) {
   return (
     <button
-      className={`${buttonStyle({ width })}`}
+      className={`${buttonStyle()}`}
       type={type}
       onClick={onClick}
       style={assignInlineVars({
@@ -40,6 +40,7 @@ function Button({
         [buttonBorderRadius]: borderRadius,
         [buttonBackground]: bgColor,
         [buttonHoverBackGround]: hoverBgColor,
+        [buttonWidth]: width,
       })}
     >
       {children}

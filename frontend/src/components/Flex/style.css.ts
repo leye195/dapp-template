@@ -1,13 +1,20 @@
+import { createVar } from "@vanilla-extract/css";
 import { RecipeVariants, recipe } from "@vanilla-extract/recipes";
 
 export type FlexVarients = RecipeVariants<typeof flexStyle>;
+
+export const flexGap = createVar();
+
+export const flexWidth = createVar();
 
 export const flexStyle = recipe({
   base: {
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "flex-start",
-    width: "auto",
+    height: "inherit",
+    width: flexWidth,
+    gap: flexGap,
   },
   variants: {
     display: {
@@ -24,7 +31,7 @@ export const flexStyle = recipe({
       flexStart: { alignItems: "flex-start" },
       flexEnd: { alignItems: "flex-end" },
       base: { alignItems: "baseline" },
-      center: { alignContent: "center" },
+      center: { alignItems: "center" },
     },
     justifyContent: {
       flexStart: { justifyContent: "flex-start" },
@@ -33,10 +40,6 @@ export const flexStyle = recipe({
       spaceBetween: { justifyContent: "space-between" },
       spaceAround: { justifyContent: "space-around" },
       spaceEvenly: { justifyContent: "space-evenly" },
-    },
-    width: {
-      auto: { width: "auto" },
-      full: { width: "100%" },
     },
   },
 });

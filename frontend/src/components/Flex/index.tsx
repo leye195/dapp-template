@@ -1,7 +1,14 @@
-import { PropsWithChildren } from "react";
-import { FlexVarients, flexStyle } from "./style.css";
+"use client";
 
-type Props = PropsWithChildren & FlexVarients;
+import { PropsWithChildren } from "react";
+import { FlexVarients, flexGap, flexStyle, flexWidth } from "./style.css";
+import { assignInlineVars } from "@vanilla-extract/dynamic";
+
+type Props = {
+  gap?: string;
+  width?: string;
+} & PropsWithChildren &
+  FlexVarients;
 
 function Flex({
   children,
@@ -9,7 +16,8 @@ function Flex({
   direction,
   alignItems,
   justifyContent,
-  width,
+  width = "auto",
+  gap = "0px",
 }: Props) {
   return (
     <div
@@ -18,8 +26,11 @@ function Flex({
         direction,
         alignItems,
         justifyContent,
-        width,
       })}`}
+      style={assignInlineVars({
+        [flexGap]: gap,
+        [flexWidth]: width,
+      })}
     >
       {children}
     </div>

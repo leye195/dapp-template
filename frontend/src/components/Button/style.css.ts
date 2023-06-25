@@ -4,6 +4,9 @@ import { RecipeVariants, recipe } from "@vanilla-extract/recipes";
 export type ButtonVarients = RecipeVariants<typeof buttonStyle>;
 
 // local var
+
+export const buttonWidth = createVar();
+
 export const buttonPadding = createVar();
 
 export const buttonBorderRadius = createVar();
@@ -15,7 +18,7 @@ export const buttonHoverBackGround = createVar();
 // base style
 export const buttonStyle = recipe({
   base: {
-    width: "auto",
+    width: buttonWidth,
     background: buttonBackground,
     padding: buttonPadding,
     borderRadius: buttonBorderRadius,
@@ -26,12 +29,6 @@ export const buttonStyle = recipe({
     ":hover": {
       background: buttonHoverBackGround,
       cursor: "pointer",
-    },
-  },
-  variants: {
-    width: {
-      auto: "auto",
-      full: "100%",
     },
   },
 });

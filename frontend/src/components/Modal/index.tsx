@@ -95,7 +95,7 @@ const Modal = ({
               {headerTitle}
             </div>
             {!isHideClose && (
-              <Button padding="0">
+              <Button padding="0" onClick={() => handleOpen(false)}>
                 <FontAwesomeIcon icon={faClose} />
               </Button>
             )}

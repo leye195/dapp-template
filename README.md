@@ -6,4 +6,4 @@ This template is compose of Next.js v13 and vanilla-extract, with viem & wagmi a
 
 ## License
 
-This app is open-source and licensed under the MIT license. For more details, check the [License file](LICENSE).
+MIT

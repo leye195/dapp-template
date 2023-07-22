@@ -32,6 +32,12 @@ npx truffle console
 npx truffle test --network ganache
 ```
 
+## flatten
+
+```
+npx truffle-flattener contracts/fileName.sol > contracts/fileNameFlatten.sol
+```
+
 ## how to deploy?
 
 ### remix

@@ -18,6 +18,7 @@ type Props = {
   hoverBgColor?: string;
   disabledBgColor?: string;
   width?: string;
+  minWidth?: string;
   disabled?: boolean;
 } & ComponentProps<"button">;
 
@@ -32,6 +33,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
       bgColor = "transparent",
       hoverBgColor = "transparent",
       disabled = false,
+      minWidth = "auto",
       onClick,
     },
     ref
@@ -43,13 +45,16 @@ const Button = forwardRef<HTMLButtonElement, Props>(
         type={type}
         onClick={onClick}
         disabled={disabled}
-        style={assignInlineVars({
-          [buttonPadding]: padding,
-          [buttonBorderRadius]: borderRadius,
-          [buttonBackground]: bgColor,
-          [buttonHoverBackGround]: hoverBgColor,
-          [buttonWidth]: width,
-        })}
+        style={{
+          ...assignInlineVars({
+            [buttonPadding]: padding,
+            [buttonBorderRadius]: borderRadius,
+            [buttonBackground]: bgColor,
+            [buttonHoverBackGround]: hoverBgColor,
+            [buttonWidth]: width,
+          }),
+          minWidth,
+        }}
       >
         {children}
       </button>

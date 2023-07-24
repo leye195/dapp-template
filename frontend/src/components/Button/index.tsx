@@ -1,6 +1,6 @@
 "use client";
 
-import { ComponentProps } from "react";
+import { ComponentProps, forwardRef } from "react";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import {
   buttonStyle,
@@ -21,34 +21,40 @@ type Props = {
   disabled?: boolean;
 } & ComponentProps<"button">;
 
-function Button({
-  children,
-  type,
-  width = "auto",
-  borderRadius = "8px",
-  padding = "8px",
-  bgColor = "transparent",
-  hoverBgColor = "transparent",
-  disabled = false,
-  onClick,
-}: Props) {
-  return (
-    <button
-      className={`${buttonStyle()}`}
-      type={type}
-      onClick={onClick}
-      disabled={disabled}
-      style={assignInlineVars({
-        [buttonPadding]: padding,
-        [buttonBorderRadius]: borderRadius,
-        [buttonBackground]: bgColor,
-        [buttonHoverBackGround]: hoverBgColor,
-        [buttonWidth]: width,
-      })}
-    >
-      {children}
-    </button>
-  );
-}
+const Button = forwardRef<HTMLButtonElement, Props>(
+  (
+    {
+      children,
+      type,
+      width = "auto",
+      borderRadius = "8px",
+      padding = "8px",
+      bgColor = "transparent",
+      hoverBgColor = "transparent",
+      disabled = false,
+      onClick,
+    },
+    ref
+  ) => {
+    return (
+      <button
+        ref={ref}
+        className={`${buttonStyle()}`}
+        type={type}
+        onClick={onClick}
+        disabled={disabled}
+        style={assignInlineVars({
+          [buttonPadding]: padding,
+          [buttonBorderRadius]: borderRadius,
+          [buttonBackground]: bgColor,
+          [buttonHoverBackGround]: hoverBgColor,
+          [buttonWidth]: width,
+        })}
+      >
+        {children}
+      </button>
+    );
+  }
+);
 
 export default Button;

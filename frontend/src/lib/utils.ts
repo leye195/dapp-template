@@ -48,3 +48,7 @@ export function createPortalRoot(id: string) {
 
   return drawerRoot;
 }
+
+export const classnames = (...classnames: string[]) => {
+  return classnames.join(" ");
+};

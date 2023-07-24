@@ -11,6 +11,9 @@ import {
 import { publicProvider } from "wagmi/providers/public";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
 import useIsomorphicLayoutEffect from "@/hooks/useIsomorphicLayoutEffect";
 
 type Props = Pick<ComponentProps<"div">, "children">;
@@ -35,12 +38,20 @@ const config = createConfig({
   ],
 });
 
+// Create a client
+const queryClient = new QueryClient();
+
 function AppProvider({ children }: Props) {
   useIsomorphicLayoutEffect(() => {
     config.storage = createStorage({ storage: window.sessionStorage });
   }, []);
 
-  return <WagmiConfig config={config}>{children}</WagmiConfig>;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools />
+      <WagmiConfig config={config}>{children}</WagmiConfig>
+    </QueryClientProvider>
+  );
 }
 
 export default AppProvider;

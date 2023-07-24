@@ -18,6 +18,7 @@ type Props = {
   hoverBgColor?: string;
   disabledBgColor?: string;
   width?: string;
+  disabled?: boolean;
 } & ComponentProps<"button">;
 
 function Button({
@@ -28,6 +29,7 @@ function Button({
   padding = "8px",
   bgColor = "transparent",
   hoverBgColor = "transparent",
+  disabled = false,
   onClick,
 }: Props) {
   return (
@@ -35,6 +37,7 @@ function Button({
       className={`${buttonStyle()}`}
       type={type}
       onClick={onClick}
+      disabled={disabled}
       style={assignInlineVars({
         [buttonPadding]: padding,
         [buttonBorderRadius]: borderRadius,

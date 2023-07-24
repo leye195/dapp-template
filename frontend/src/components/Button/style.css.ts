@@ -22,13 +22,13 @@ export const buttonStyle = recipe({
     background: buttonBackground,
     padding: buttonPadding,
     borderRadius: buttonBorderRadius,
+    cursor: "pointer",
     ":disabled": {
       opacity: 0.5,
       cursor: "not-allowed",
     },
     ":hover": {
       background: buttonHoverBackGround,
-      cursor: "pointer",
     },
   },
 });
